@@ -1,2 +1,8 @@
 ---
 # tasks file for teleport-ansible
+
+- import_tasks: download-teleport.yaml
+
+- import_tasks: copy-teleport.yaml
+
+- import_tasks: install-teleport.yaml

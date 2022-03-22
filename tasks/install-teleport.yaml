@@ -1,0 +1,55 @@
+---
+
+# install and configure teleport
+
+- name: Add teleport path to bashrc
+  lineinfile:
+    path: /root/.bashrc
+    line: export PATH="$PATH:/usr/local/bin/"
+
+- name: Copy systemd teleport.service config
+  copy:
+     src: files/teleport.service
+     dest: /etc/systemd/system/teleport.service
+     owner: root
+     group: root
+     mode: '0644'
+
+- name: Copy teleport license file for enterprise
+  copy:
+     src: files/license.pem
+     dest: /opt/teleport/license.pem
+     owner: root
+     group: root
+     mode: '0644'
+
+- name: Create teleport log directory
+  file:
+     path: /opt/teleport/log/
+     state: directory
+     owner: root
+     group: root
+     mode: '0755'
+
+- name: Unarchive the Teleport tarball
+  unarchive:
+    src: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
+    dest: "/tmp/"
+    owner: root
+    group: root
+    mode: '0700'
+    remote_src: yes
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Execute the teleport install script in remote shell
+  shell: "/tmp/{{ appname }}/install"
+  args:
+    creates: "/usr/local/bin/teleport"
+   
+- name: Recursively remove directory
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  loop:
+    - { path: "/tmp/{{ appname }}" }
+    - { path: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}" }

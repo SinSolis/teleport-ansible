@@ -1,0 +1,11 @@
+---
+
+# tasks file to copy the teleport package to target host
+
+- name: Copy teleport tarball to target host
+  copy:
+    src: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
+    dest: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
+    owner: root
+    group: root
+  when: ansible_facts['os_family'] == "RedHat"
