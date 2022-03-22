@@ -2,11 +2,12 @@
 # defaults file for teleport-ansible
 
 #https://get.gravitational.com/teleport-ent-v9.0.0-linux-amd64-centos7-bin.tar.gz
+#https://get.gravitational.com/teleport-v9.0.1-linux-amd64-bin.tar.gz
+
 url: "https://get.gravitational.com"
-appname: "teleport-ent"
+appname: "teleport"
 os: "linux"
-version: "v9.0.0"
+version: "v9.0.1"
 architecture: "amd64"
-distro: "centos7"
 format: "bin.tar.gz"
-teleport_tarball_hash: "sha256:ec7113e4a381ebad0dc2d37773d08dcc8dc9328496a3b0df1cdeb7c6335493b9"
+teleport_tarball_hash: "sha256:abe36e9b75ccae8473fd35bef250238e66f5c68ef0c251ec11987b58b79d8e4b"
