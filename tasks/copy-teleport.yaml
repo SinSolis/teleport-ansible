@@ -4,8 +4,8 @@
 
 - name: Copy teleport tarball to target host
   copy:
-    src: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
-    dest: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
+    src: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ format }}"
+    dest: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ format }}"
     owner: root
     group: root
   when: ansible_facts['os_family'] == "RedHat"

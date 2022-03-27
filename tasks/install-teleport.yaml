@@ -33,7 +33,7 @@
 
 - name: Unarchive the Teleport tarball
   unarchive:
-    src: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
+    src: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ format }}"
     dest: "/tmp/"
     owner: root
     group: root
@@ -52,4 +52,4 @@
     state: absent
   loop:
     - { path: "/tmp/{{ appname }}" }
-    - { path: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}" }
+    - { path: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ format }}" }

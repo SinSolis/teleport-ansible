@@ -3,15 +3,15 @@
 
 - name: Check if the Teleport tarball package exists
   stat:
-    path: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
+    path: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ format }}"
   become: no
   delegate_to: 127.0.0.1
   register: tarball_result
 
 - name: Download Teleport tarball with check (sha256)
   get_url:
-    url: "{{ url }}/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
-    dest: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ distro }}-{{ format }}"
+    url: "{{ url }}/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ format }}"
+    dest: "/tmp/{{ appname }}-{{ version }}-{{ os }}-{{ architecture }}-{{ format }}"
     checksum: "{{ teleport_tarball_hash }}"
   become: no
   delegate_to: 127.0.0.1
