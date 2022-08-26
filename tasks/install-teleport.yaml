@@ -15,14 +15,6 @@
      group: root
      mode: '0644'
 
-- name: Copy teleport license file for enterprise
-  copy:
-     src: files/license.pem
-     dest: /opt/teleport/license.pem
-     owner: root
-     group: root
-     mode: '0644'
-
 - name: Create teleport log directory
   file:
      path: /opt/teleport/log/

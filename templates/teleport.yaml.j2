@@ -1,0 +1,53 @@
+version: v2
+teleport:
+  data_dir: /opt/teleport
+  log:
+    output: /opt/teleport/log/teleport.log
+    severity: INFO
+    format:
+      output: text
+      extra_fields: [level, timestamp, component, caller]
+  storage:
+    type: dir
+  auth_servers:
+        - "localhost:3025"
+  # Token presented by proxy to auth server to join a cluster
+  # Token driven by encrypted group vars
+  auth_token: {{ ch3_teleport_token.proxy }}
+
+auth_service:
+  enabled: yes
+  cluster_name: "home"
+  authentication:
+    type: local
+    second_factor: off
+  listen_addr: 0.0.0.0:3025
+  tokens:
+  # tokens driven by encryped group vars
+  - "proxy:{{ ch3_teleport_token.proxy }}"
+  - "node:{{ ch3_teleport_token.node }}"
+  - "auth:{{ ch3_teleport_token.auth }}"
+  session_recording: "node"
+  client_idle_timeout: 8h
+  client_idle_timeout_message: "Get back to work"
+  keep_alive_interval: 5m
+  keep_alive_count_max: 3
+
+ssh_service:
+  enabled: "yes"
+  labels:
+    env: test
+    owner: admin
+  commands:
+  - name: hostname
+    command: [hostname]
+    period: 1m0s
+
+proxy_service:
+  enabled: yes
+  listen_addr: 0.0.0.0:3023
+  tunnel_listen_addr: 0.0.0.0:3024
+  web_listen_addr: 0.0.0.0:3080
+  public_addr: "{{ ansible.hostname }}:3080"
+  ssh_public_addr: "{{ ansible.hostname }}:3023"
+  tunnel_public_addr: {{ ansible.hostname }}:3024"
