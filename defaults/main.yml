@@ -1,12 +1,12 @@
 ---
 # defaults file for teleport-ansible
 
-#https://get.gravitational.com/teleport-v9.0.1-linux-amd64-bin.tar.gz
+# https://get.gravitational.com/teleport-v10.1.4-linux-amd64-bin.tar.gz
 
 url: "https://get.gravitational.com"
 appname: "teleport"
 os: "linux"
-version: "v9.0.1"
+version: "v10.1.4"
 architecture: "amd64"
 format: "bin.tar.gz"
-teleport_tarball_hash: "sha256:abe36e9b75ccae8473fd35bef250238e66f5c68ef0c251ec11987b58b79d8e4b"
+teleport_tarball_hash: "sha256:0d707af3aa5d7e92c24666e3c43836dad5de469dc99835602e94a7057591e3ed"
