@@ -13,7 +13,7 @@ teleport:
         - "localhost:3025"
   # Token presented by proxy to auth server to join a cluster
   # Token driven by encrypted group vars
-  auth_token: {{ ch3_teleport_token.proxy }}
+  auth_token: {{ teleport_token.proxy }}
 
 auth_service:
   enabled: yes
@@ -24,9 +24,9 @@ auth_service:
   listen_addr: 0.0.0.0:3025
   tokens:
   # tokens driven by encryped group vars
-  - "proxy:{{ ch3_teleport_token.proxy }}"
-  - "node:{{ ch3_teleport_token.node }}"
-  - "auth:{{ ch3_teleport_token.auth }}"
+  - "proxy:{{ teleport_token.proxy }}"
+  - "node:{{ teleport_token.node }}"
+  - "auth:{{ teleport_token.auth }}"
   session_recording: "node"
   client_idle_timeout: 8h
   client_idle_timeout_message: "Get back to work"
